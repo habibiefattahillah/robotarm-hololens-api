@@ -1,0 +1,11 @@
+C:\Users\OWEN\Desktop\fanuc\dotNetFramework\SampleCode\csharp2017\bin\x64\Debug\frrjiftest.exe.config
+C:\Users\OWEN\Desktop\fanuc\dotNetFramework\SampleCode\csharp2017\bin\x64\Debug\frrjiftest.exe
+C:\Users\OWEN\Desktop\fanuc\dotNetFramework\SampleCode\csharp2017\bin\x64\Debug\frrjiftest.pdb
+C:\Users\OWEN\Desktop\fanuc\dotNetFramework\SampleCode\csharp2017\bin\x64\Debug\RobotInterfaceDotNet.dll
+C:\Users\OWEN\Desktop\fanuc\dotNetFramework\SampleCode\csharp2017\obj\x64\Debug\frrjiftest.frm.resources
+C:\Users\OWEN\Desktop\fanuc\dotNetFramework\SampleCode\csharp2017\obj\x64\Debug\frrjiftest.Properties.Resources.resources
+C:\Users\OWEN\Desktop\fanuc\dotNetFramework\SampleCode\csharp2017\obj\x64\Debug\frrjiftest.csproj.GenerateResource.cache
+C:\Users\OWEN\Desktop\fanuc\dotNetFramework\SampleCode\csharp2017\obj\x64\Debug\frrjiftest.csproj.CoreCompileInputs.cache
+C:\Users\OWEN\Desktop\fanuc\dotNetFramework\SampleCode\csharp2017\obj\x64\Debug\frrjiftest.csproj.CopyComplete
+C:\Users\OWEN\Desktop\fanuc\dotNetFramework\SampleCode\csharp2017\obj\x64\Debug\frrjiftest.exe
+C:\Users\OWEN\Desktop\fanuc\dotNetFramework\SampleCode\csharp2017\obj\x64\Debug\frrjiftest.pdb
