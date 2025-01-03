@@ -75,7 +75,6 @@ namespace frrjiftest
                     if (result.MessageType == WebSocketMessageType.Text)
                     {
                         string message = Encoding.UTF8.GetString(buffer, 0, result.Count);
-                        MessageBox.Show($"Received from client: {message}");
                         Console.WriteLine($"Received from client: {message}");
 
                         // Attempt to parse the received message into the ReceivedData object

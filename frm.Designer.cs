@@ -110,6 +110,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
+            this.button15 = new System.Windows.Forms.Button();
             this.MainMenu1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -679,6 +680,7 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.button15);
             this.groupBox5.Controls.Add(this.button14);
             this.groupBox5.Controls.Add(this.textBox10);
             this.groupBox5.Controls.Add(this.button13);
@@ -1176,6 +1178,18 @@
             this.label12.Text = "DO Control";
             this.label12.Click += new System.EventHandler(this.label12_Click);
             // 
+            // button15
+            // 
+            this.button15.BackColor = System.Drawing.SystemColors.Control;
+            this.button15.Font = new System.Drawing.Font("MS UI Gothic", 8.25F);
+            this.button15.Location = new System.Drawing.Point(149, 295);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(84, 35);
+            this.button15.TabIndex = 98;
+            this.button15.Text = "Say Hi";
+            this.button15.UseVisualStyleBackColor = false;
+            this.button15.Click += new System.EventHandler(this.button15_Click);
+            // 
             // frm
             // 
             this.ClientSize = new System.Drawing.Size(841, 435);
@@ -1287,6 +1301,7 @@
         public System.Windows.Forms.Button button13;
         private System.Windows.Forms.TextBox textBox10;
         public System.Windows.Forms.Button button14;
+        public System.Windows.Forms.Button button15;
     }
 }
 

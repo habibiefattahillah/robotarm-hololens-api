@@ -125,7 +125,7 @@ namespace frrjiftest
             }
         }
 
-        private void cmdRefresh_Click(System.Object eventSender, System.EventArgs eventArgs)
+        private void cmdRefreshPLEASE()
         {
             int ii = 0;
             string strTmp = null;
@@ -785,16 +785,16 @@ namespace frrjiftest
             }
             else
             {
-                strTmp = strTmp + "Error"  + Environment.NewLine;
+                strTmp = strTmp + "Error" + Environment.NewLine;
             }
-            strTmp = strTmp + "--- WSI ---"  + Environment.NewLine;
+            strTmp = strTmp + "--- WSI ---" + Environment.NewLine;
             if (blnSDI == true)
             {
                 strTmp = strTmp + mstrIO("WSI", 1, 1, ref intWSI) + Environment.NewLine;
             }
             else
             {
-                strTmp = strTmp + "Error"  + Environment.NewLine;
+                strTmp = strTmp + "Error" + Environment.NewLine;
             }
 
             strTmp = strTmp + "--- Alarm List ---" + Environment.NewLine;
@@ -891,6 +891,12 @@ namespace frrjiftest
             cmdRefresh.Enabled = true;
             System.Windows.Forms.Cursor.Current = Cursors.Default;
         }
+
+        private void cmdRefresh_Click(System.Object eventSender, System.EventArgs eventArgs)
+        {
+            cmdRefreshPLEASE();
+        }
+
         int static_cmdSetGO_Click_lngCount;
 
         private void cmdSetGO_Click(System.Object eventSender, System.EventArgs eventArgs)
@@ -1710,7 +1716,41 @@ namespace frrjiftest
             if (chkLoop.Checked)
             {
                 cmdRefresh.PerformClick();
+                cmdRefreshPLEASE();
+
+                if (_clientSocket != null && _clientSocket.State == WebSocketState.Open)
+                {
+                    RefreshRobotData();
+                }
             }
+        }
+
+        private void RefreshRobotData()
+        {
+            Array xyzwpr = new float[9];
+            Array config = new short[7];
+            Array joint = new float[9];
+            short intUF = 0;
+            short intUT = 0;
+            short intValidC = 0;
+            short intValidJ = 0;
+
+            mobjCurPos.GetValue(ref xyzwpr, ref config, ref joint, ref intUF, ref intUT, ref intValidC, ref intValidJ);
+
+            var data = new
+            {
+                client = "robot",
+                x = xyzwpr.GetValue(0),
+                y = xyzwpr.GetValue(1),
+                z = xyzwpr.GetValue(2),
+                w = xyzwpr.GetValue(3),
+                p = xyzwpr.GetValue(4),
+                r = xyzwpr.GetValue(5),
+                xyzwpr = new object[] { xyzwpr.GetValue(0), xyzwpr.GetValue(1), xyzwpr.GetValue(2), xyzwpr.GetValue(3), xyzwpr.GetValue(4), xyzwpr.GetValue(5) },
+                position = new object[] { joint.GetValue(0), joint.GetValue(1), joint.GetValue(2), joint.GetValue(3), joint.GetValue(4), joint.GetValue(5) }
+            };
+
+            ClientSendData(data);
         }
 
         private void msubSetTestControls(bool blnEnabled)
@@ -1753,6 +1793,7 @@ namespace frrjiftest
             msubSetTestControls(true);
             cmdConnect.Text = "Disconnect";
 
+            timLoop.Interval = 1;
             timLoop.Enabled = true;
         }
 
@@ -1772,7 +1813,6 @@ namespace frrjiftest
 
             msubSetTestControls(false);
             cmdConnect.Text = "Connect";
-
         }
 
         private void msubDisconnected2()
@@ -2480,6 +2520,20 @@ namespace frrjiftest
             }
         }
 
+        private async void ClientSendData(object data)
+        {
+            if (_clientSocket == null || _clientSocket.State != WebSocketState.Open)
+            {
+                MessageBox.Show("Client is not connected to the server.");
+                return;
+            }
+
+            string message = JsonConvert.SerializeObject(data);
+
+            byte[] buffer = Encoding.UTF8.GetBytes(message);
+            await _clientSocket.SendAsync(new ArraySegment<byte>(buffer), WebSocketMessageType.Text, true, CancellationToken.None);
+        }
+
         private async void button13_Click(object sender, EventArgs e)
         {
             if (_clientSocket == null || _clientSocket.State != WebSocketState.Open)
@@ -2488,17 +2542,18 @@ namespace frrjiftest
                 return;
             }
 
-            // Pls help
+            var i = 0;
             var data = new
             {
-                x = 12.2,
-                y = 17.1,
-                z = 91.0,
-                w = 0.0,
-                p = 2.0,
-                r = 4.0
+                client = "robot",
+                x = 1,
+                y = 1,
+                z = 1,
+                w = 1,
+                p = 1,
+                r = 1
             };
-
+            // Pls help
             string message = JsonConvert.SerializeObject(data);
 
             byte[] buffer = Encoding.UTF8.GetBytes(message);
@@ -2572,6 +2627,35 @@ namespace frrjiftest
         private void txtResult_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private async void button15_Click(object sender, EventArgs e)
+        {
+
+            if (_clientSocket == null || _clientSocket.State != WebSocketState.Open)
+            {
+                MessageBox.Show("Client is not connected to the server.");
+                return;
+            }
+
+            var i = 0;
+            var data = new
+            {
+                client = "robot",
+                x = 2,
+                y = 2,
+                z = 2,
+                w = 2,
+                p = 2,
+                r = 2
+            };
+            // Pls help
+            string message = JsonConvert.SerializeObject(data);
+
+            byte[] buffer = Encoding.UTF8.GetBytes(message);
+            await _clientSocket.SendAsync(new ArraySegment<byte>(buffer), WebSocketMessageType.Text, true, CancellationToken.None);
+
+            MessageBox.Show("JSON message sent to the server.");
         }
     }
 
