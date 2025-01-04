@@ -49,7 +49,6 @@ namespace frrjiftest
                     // Add client to the list
                     _clients.Add(clientSocket);
 
-                    MessageBox.Show($"New client connected. Total clients: {_clients.Count}");
                     Console.WriteLine($"New client connected. Total clients: {_clients.Count}");
 
                     // Handle the client in a separate task
@@ -84,10 +83,10 @@ namespace frrjiftest
 
                             if (data != null)
                             {
-                                Console.WriteLine($"Parsed Data: x = {data.x}, y = {data.y}, z = {data.z}, w = {data.w}, p = {data.p}, r = {data.r}");
+                                Console.WriteLine($"Parsed Data: x = {data.xyzwpr[0]}, y = {data.xyzwpr[1]}, z = {data.xyzwpr[2]}, w = {data.xyzwpr[3]}, p = {data.xyzwpr[4]}, r = {data.xyzwpr[5]}");
 
                                 // Example: Broadcast the parsed data to all clients
-                                string responseMessage = $"Broadcast: x = {data.x}, y = {data.y}, z = {data.z}, w = {data.w}, p = {data.p}, r = {data.r}";
+                                string responseMessage = $"Broadcast: x = x = {data.xyzwpr[0]}, y = {data.xyzwpr[1]}, z = {data.xyzwpr[2]}, w = {data.xyzwpr[3]}, p = {data.xyzwpr[4]}, r = {data.xyzwpr[5]}";
 
                                 foreach (var client in _clients)
                                 {
@@ -139,13 +138,18 @@ namespace frrjiftest
 
         public class ReceivedData
         {
-            public double x { get; set; }
-            public double y { get; set; }
-            public double z { get; set; }
-            public double w { get; set; }
-            public double p { get; set; }
-            public double r { get; set; }
+            public int client {  get; set; }
+            public double[] xyzwpr { get; set; }
+            public double[] position { get; set; }
+            public bool[] intRDO { get; set; }
         }
 
+        public class SentData
+        {
+            public int client { get; set; }
+            public double[] xyzwpr { get; set; }
+            public double[] position { get; set; }
+            public bool[] intRDO { get; set; }
+        }
     }
 }

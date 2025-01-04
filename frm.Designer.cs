@@ -67,14 +67,9 @@
             this.cmdSetSDI = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.button14 = new System.Windows.Forms.Button();
             this.textBox10 = new System.Windows.Forms.TextBox();
-            this.button13 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.button11 = new System.Windows.Forms.Button();
@@ -110,7 +105,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
-            this.button15 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
             this.MainMenu1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -680,15 +676,9 @@
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.button15);
-            this.groupBox5.Controls.Add(this.button14);
             this.groupBox5.Controls.Add(this.textBox10);
-            this.groupBox5.Controls.Add(this.button13);
             this.groupBox5.Controls.Add(this.button12);
-            this.groupBox5.Controls.Add(this.button10);
-            this.groupBox5.Controls.Add(this.button9);
             this.groupBox5.Controls.Add(this.textBox3);
-            this.groupBox5.Controls.Add(this.textBox2);
             this.groupBox5.Controls.Add(this.textBox1);
             this.groupBox5.Location = new System.Drawing.Point(532, 18);
             this.groupBox5.Name = "groupBox5";
@@ -697,100 +687,41 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Websocket and Hololens 2 Connection";
             // 
-            // button14
-            // 
-            this.button14.BackColor = System.Drawing.SystemColors.Control;
-            this.button14.Font = new System.Drawing.Font("MS UI Gothic", 8.25F);
-            this.button14.Location = new System.Drawing.Point(149, 204);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(84, 35);
-            this.button14.TabIndex = 97;
-            this.button14.Text = "ClientConn";
-            this.button14.UseVisualStyleBackColor = false;
-            this.button14.Click += new System.EventHandler(this.button14_Click);
-            // 
             // textBox10
             // 
-            this.textBox10.Location = new System.Drawing.Point(31, 169);
+            this.textBox10.Location = new System.Drawing.Point(31, 104);
             this.textBox10.Multiline = true;
             this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(94, 161);
+            this.textBox10.Size = new System.Drawing.Size(202, 226);
             this.textBox10.TabIndex = 96;
             this.textBox10.TextChanged += new System.EventHandler(this.textBox10_TextChanged);
-            // 
-            // button13
-            // 
-            this.button13.BackColor = System.Drawing.SystemColors.Control;
-            this.button13.Font = new System.Drawing.Font("MS UI Gothic", 8.25F);
-            this.button13.Location = new System.Drawing.Point(149, 254);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(84, 35);
-            this.button13.TabIndex = 95;
-            this.button13.Text = "Say Hi";
-            this.button13.UseVisualStyleBackColor = false;
-            this.button13.Click += new System.EventHandler(this.button13_Click);
             // 
             // button12
             // 
             this.button12.BackColor = System.Drawing.SystemColors.Control;
             this.button12.Font = new System.Drawing.Font("MS UI Gothic", 8.25F);
-            this.button12.Location = new System.Drawing.Point(149, 160);
+            this.button12.Location = new System.Drawing.Point(31, 69);
             this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(84, 35);
+            this.button12.Size = new System.Drawing.Size(202, 29);
             this.button12.TabIndex = 94;
             this.button12.Text = "ServerConn";
             this.button12.UseVisualStyleBackColor = false;
             this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
-            // button10
-            // 
-            this.button10.BackColor = System.Drawing.SystemColors.Control;
-            this.button10.Enabled = false;
-            this.button10.Font = new System.Drawing.Font("MS UI Gothic", 8.25F);
-            this.button10.Location = new System.Drawing.Point(31, 116);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(84, 35);
-            this.button10.TabIndex = 78;
-            this.button10.Text = "Stream Data";
-            this.button10.UseVisualStyleBackColor = false;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
-            // 
-            // button9
-            // 
-            this.button9.BackColor = System.Drawing.SystemColors.Control;
-            this.button9.Enabled = false;
-            this.button9.Font = new System.Drawing.Font("MS UI Gothic", 8.25F);
-            this.button9.Location = new System.Drawing.Point(149, 116);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(84, 35);
-            this.button9.TabIndex = 77;
-            this.button9.Text = "Connect";
-            this.button9.UseVisualStyleBackColor = false;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
-            // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(131, 69);
+            this.textBox3.Location = new System.Drawing.Point(131, 42);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(102, 22);
             this.textBox3.TabIndex = 2;
             this.textBox3.Text = "Port";
             this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(31, 69);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(94, 22);
-            this.textBox2.TabIndex = 1;
-            this.textBox2.Text = "Gateway";
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
-            // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(31, 41);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(202, 22);
+            this.textBox1.Size = new System.Drawing.Size(94, 22);
             this.textBox1.TabIndex = 0;
             this.textBox1.Text = "IP Address";
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
@@ -972,6 +903,8 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.button10);
+            this.groupBox3.Controls.Add(this.button9);
             this.groupBox3.Controls.Add(this.button5);
             this.groupBox3.Controls.Add(this.button4);
             this.groupBox3.Controls.Add(this.button3);
@@ -1178,17 +1111,25 @@
             this.label12.Text = "DO Control";
             this.label12.Click += new System.EventHandler(this.label12_Click);
             // 
-            // button15
+            // button9
             // 
-            this.button15.BackColor = System.Drawing.SystemColors.Control;
-            this.button15.Font = new System.Drawing.Font("MS UI Gothic", 8.25F);
-            this.button15.Location = new System.Drawing.Point(149, 295);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(84, 35);
-            this.button15.TabIndex = 98;
-            this.button15.Text = "Say Hi";
-            this.button15.UseVisualStyleBackColor = false;
-            this.button15.Click += new System.EventHandler(this.button15_Click);
+            this.button9.Location = new System.Drawing.Point(114, 82);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(41, 15);
+            this.button9.TabIndex = 50;
+            this.button9.Text = "button9";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click_2);
+            // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(114, 116);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(41, 15);
+            this.button10.TabIndex = 51;
+            this.button10.Text = "button10";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click_1);
             // 
             // frm
             // 
@@ -1278,10 +1219,7 @@
         public System.Windows.Forms.Button cmdSetSDI;
         private System.Windows.Forms.GroupBox groupBox5;
         public System.Windows.Forms.Button button7;
-        public System.Windows.Forms.Button button10;
-        public System.Windows.Forms.Button button9;
         private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.TextBox textBox8;
@@ -1298,10 +1236,9 @@
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Button button11;
         public System.Windows.Forms.Button button12;
-        public System.Windows.Forms.Button button13;
         private System.Windows.Forms.TextBox textBox10;
-        public System.Windows.Forms.Button button14;
-        public System.Windows.Forms.Button button15;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button button10;
     }
 }
 

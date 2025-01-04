@@ -1734,18 +1734,15 @@ namespace frrjiftest
             short intUT = 0;
             short intValidC = 0;
             short intValidJ = 0;
+            Array intRDO = new short[10];
 
             mobjCurPos.GetValue(ref xyzwpr, ref config, ref joint, ref intUF, ref intUT, ref intValidC, ref intValidJ);
+            mobjCore.ReadRDO(1, ref intRDO, 10);
 
             var data = new
             {
-                client = "robot",
-                x = xyzwpr.GetValue(0),
-                y = xyzwpr.GetValue(1),
-                z = xyzwpr.GetValue(2),
-                w = xyzwpr.GetValue(3),
-                p = xyzwpr.GetValue(4),
-                r = xyzwpr.GetValue(5),
+                client = 0,
+                rdo = intRDO,
                 xyzwpr = new object[] { xyzwpr.GetValue(0), xyzwpr.GetValue(1), xyzwpr.GetValue(2), xyzwpr.GetValue(3), xyzwpr.GetValue(4), xyzwpr.GetValue(5) },
                 position = new object[] { joint.GetValue(0), joint.GetValue(1), joint.GetValue(2), joint.GetValue(3), joint.GetValue(4), joint.GetValue(5) }
             };
@@ -2065,14 +2062,34 @@ namespace frrjiftest
                     txtLog.AppendText($"\nReceived: {message}\n");
                     // How do I get the data from the message?
                     ReceivedData data = JsonConvert.DeserializeObject<ReceivedData>(message);
+                    if(data == null || data.client == 0)
+                    {
+                        txtLog.AppendText("Error deserializing data\n");
+                        continue;
+                    }
                     UpdateTextBoxes(data);
-
+                    if(data.client != 0)
+                    {
+                        OpenAndCloseClaw(data.intRDO);
+                    }
                 }
                 else if (result.MessageType == WebSocketMessageType.Close)
                 {
                     txtLog.AppendText("Server closed the connection.\n");
                     await _clientSocket.CloseAsync(WebSocketCloseStatus.NormalClosure, "Closed by client", CancellationToken.None);
                 }
+            }
+        }
+
+        private void OpenAndCloseClaw(bool[] intRDO)
+        {
+            if (intRDO[1] == true)
+            {
+                button1.PerformClick();
+            }
+            else if (intRDO[2] == false)
+            {
+                button2.PerformClick();
             }
         }
 
@@ -2083,22 +2100,22 @@ namespace frrjiftest
             {
                 textBox8.Invoke(new Action(() =>
                 {
-                    textBox8.Text = data.x.ToString();
-                    textBox4.Text = data.y.ToString();
-                    textBox5.Text = data.z.ToString();
-                    textBox6.Text = data.w.ToString();
-                    textBox7.Text = data.p.ToString();
-                    textBox9.Text = data.r.ToString();
+                    textBox8.Text = data.xyzwpr[0].ToString();
+                    textBox4.Text = data.xyzwpr[1].ToString();
+                    textBox5.Text = data.xyzwpr[2].ToString();
+                    textBox6.Text = data.xyzwpr[3].ToString();
+                    textBox7.Text = data.xyzwpr[4].ToString();
+                    textBox9.Text = data.xyzwpr[5].ToString();
                 }));
             }
             else
             {
-                textBox8.Text = data.x.ToString();
-                textBox4.Text = data.y.ToString();
-                textBox5.Text = data.z.ToString();
-                textBox6.Text = data.w.ToString();
-                textBox7.Text = data.p.ToString();
-                textBox9.Text = data.r.ToString();
+                textBox8.Text = data.xyzwpr[0].ToString();
+                textBox4.Text = data.xyzwpr[1].ToString();
+                textBox5.Text = data.xyzwpr[2].ToString();
+                textBox6.Text = data.xyzwpr[3].ToString();
+                textBox7.Text = data.xyzwpr[4].ToString();
+                textBox9.Text = data.xyzwpr[5].ToString();
             }
         }
 
@@ -2502,10 +2519,9 @@ namespace frrjiftest
 
         private void button9_Click(object sender, EventArgs e)
         {
-
         }
 
-        private async void button12_Click(object sender, EventArgs e)
+        private async void startServerConnection()
         {
             string txtIPAddress = textBox1.Text;
             string txtPort = textBox3.Text;
@@ -2518,6 +2534,31 @@ namespace frrjiftest
             {
                 MessageBox.Show($"Error: {ex.Message}");
             }
+        }
+
+        private async void startClientConnection()
+        {
+            System.Windows.Forms.TextBox txtLog = textBox10;
+            string txtIPAddress = textBox1.Text;
+            string txtPort = textBox3.Text;
+            string serverUrl = $"ws://{txtIPAddress}:{txtPort}/";
+            try
+            {
+                _clientSocket = new ClientWebSocket();
+                await _clientSocket.ConnectAsync(new Uri(serverUrl), CancellationToken.None);
+                txtLog.AppendText("Connected to server.\n");
+                await ReceiveMessagesAsync();
+            }
+            catch (Exception ex)
+            {
+                txtLog.AppendText($"Error: {ex.Message}\n");
+            }
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            startServerConnection();
+            startClientConnection();
         }
 
         private async void ClientSendData(object data)
@@ -2629,9 +2670,8 @@ namespace frrjiftest
 
         }
 
-        private async void button15_Click(object sender, EventArgs e)
+        private async void button9_Click_2(object sender, EventArgs e)
         {
-
             if (_clientSocket == null || _clientSocket.State != WebSocketState.Open)
             {
                 MessageBox.Show("Client is not connected to the server.");
@@ -2641,13 +2681,41 @@ namespace frrjiftest
             var i = 0;
             var data = new
             {
-                client = "robot",
-                x = 2,
-                y = 2,
-                z = 2,
-                w = 2,
-                p = 2,
-                r = 2
+                client = 1,
+                xyzwpr = new object[] { 1, 1, 1, 1, 1, 1 },
+                position = new object[] { 1, 1, 1, 1, 1, 1 },
+                intRDO = new bool[10]
+                {
+                    true, false, false, false, false, false, false, false, false, false
+                }
+            };
+            // Pls help
+            string message = JsonConvert.SerializeObject(data);
+
+            byte[] buffer = Encoding.UTF8.GetBytes(message);
+            await _clientSocket.SendAsync(new ArraySegment<byte>(buffer), WebSocketMessageType.Text, true, CancellationToken.None);
+
+            MessageBox.Show("JSON message sent to the server.");
+        }
+
+        private async void button10_Click_1(object sender, EventArgs e)
+        {
+            if (_clientSocket == null || _clientSocket.State != WebSocketState.Open)
+            {
+                MessageBox.Show("Client is not connected to the server.");
+                return;
+            }
+
+            var i = 0;
+            var data = new
+            {
+                client = 1,
+                xyzwpr = new object[] { 1, 1, 1, 1, 1, 1 },
+                position = new object[] { 1, 1, 1, 1, 1, 1 },
+                intRDO = new bool[10]
+                {
+                    false, true, false, false, false, false, false, false, false, false
+                }
             };
             // Pls help
             string message = JsonConvert.SerializeObject(data);
