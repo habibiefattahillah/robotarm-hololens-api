@@ -105,8 +105,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
             this.MainMenu1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -903,8 +901,6 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.button10);
-            this.groupBox3.Controls.Add(this.button9);
             this.groupBox3.Controls.Add(this.button5);
             this.groupBox3.Controls.Add(this.button4);
             this.groupBox3.Controls.Add(this.button3);
@@ -1111,26 +1107,6 @@
             this.label12.Text = "DO Control";
             this.label12.Click += new System.EventHandler(this.label12_Click);
             // 
-            // button9
-            // 
-            this.button9.Location = new System.Drawing.Point(114, 82);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(41, 15);
-            this.button9.TabIndex = 50;
-            this.button9.Text = "button9";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click_2);
-            // 
-            // button10
-            // 
-            this.button10.Location = new System.Drawing.Point(114, 116);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(41, 15);
-            this.button10.TabIndex = 51;
-            this.button10.Text = "button10";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click_1);
-            // 
             // frm
             // 
             this.ClientSize = new System.Drawing.Size(841, 435);
@@ -1237,8 +1213,6 @@
         private System.Windows.Forms.Button button11;
         public System.Windows.Forms.Button button12;
         private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button10;
     }
 }
 

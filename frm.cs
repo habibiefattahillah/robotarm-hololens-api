@@ -2067,8 +2067,13 @@ namespace frrjiftest
                         txtLog.AppendText("Error deserializing data\n");
                         continue;
                     }
-                    UpdateTextBoxes(data);
-                    if(data.client != 0)
+
+                    if(data.xyzwpr != null)
+                    { 
+                        UpdateTextBoxes(data); 
+                    }
+
+                    if(data.intRDO != null)
                     {
                         OpenAndCloseClaw(data.intRDO);
                     }
@@ -2575,35 +2580,6 @@ namespace frrjiftest
             await _clientSocket.SendAsync(new ArraySegment<byte>(buffer), WebSocketMessageType.Text, true, CancellationToken.None);
         }
 
-        private async void button13_Click(object sender, EventArgs e)
-        {
-            if (_clientSocket == null || _clientSocket.State != WebSocketState.Open)
-            {
-                MessageBox.Show("Client is not connected to the server.");
-                return;
-            }
-
-            var i = 0;
-            var data = new
-            {
-                client = "robot",
-                x = 1,
-                y = 1,
-                z = 1,
-                w = 1,
-                p = 1,
-                r = 1
-            };
-            // Pls help
-            string message = JsonConvert.SerializeObject(data);
-
-            byte[] buffer = Encoding.UTF8.GetBytes(message);
-            await _clientSocket.SendAsync(new ArraySegment<byte>(buffer), WebSocketMessageType.Text, true, CancellationToken.None);
-
-            MessageBox.Show("JSON message sent to the server.");
-        }
-
-
         private void textBox10_TextChanged(object sender, EventArgs e)
         {
 
@@ -2678,12 +2654,9 @@ namespace frrjiftest
                 return;
             }
 
-            var i = 0;
-            var data = new
+            var data = new SentData
             {
                 client = 1,
-                xyzwpr = new object[] { 1, 1, 1, 1, 1, 1 },
-                position = new object[] { 1, 1, 1, 1, 1, 1 },
                 intRDO = new bool[10]
                 {
                     true, false, false, false, false, false, false, false, false, false
@@ -2706,12 +2679,9 @@ namespace frrjiftest
                 return;
             }
 
-            var i = 0;
-            var data = new
+            var data = new SentData
             {
                 client = 1,
-                xyzwpr = new object[] { 1, 1, 1, 1, 1, 1 },
-                position = new object[] { 1, 1, 1, 1, 1, 1 },
                 intRDO = new bool[10]
                 {
                     false, true, false, false, false, false, false, false, false, false

@@ -83,10 +83,10 @@ namespace frrjiftest
 
                             if (data != null)
                             {
-                                Console.WriteLine($"Parsed Data: x = {data.xyzwpr[0]}, y = {data.xyzwpr[1]}, z = {data.xyzwpr[2]}, w = {data.xyzwpr[3]}, p = {data.xyzwpr[4]}, r = {data.xyzwpr[5]}");
+                                //Console.WriteLine($"Parsed Data: x = {data.xyzwpr[0]}, y = {data.xyzwpr[1]}, z = {data.xyzwpr[2]}, w = {data.xyzwpr[3]}, p = {data.xyzwpr[4]}, r = {data.xyzwpr[5]}");
 
                                 // Example: Broadcast the parsed data to all clients
-                                string responseMessage = $"Broadcast: x = x = {data.xyzwpr[0]}, y = {data.xyzwpr[1]}, z = {data.xyzwpr[2]}, w = {data.xyzwpr[3]}, p = {data.xyzwpr[4]}, r = {data.xyzwpr[5]}";
+                                //string responseMessage = $"Broadcast: x = x = {data.xyzwpr[0]}, y = {data.xyzwpr[1]}, z = {data.xyzwpr[2]}, w = {data.xyzwpr[3]}, p = {data.xyzwpr[4]}, r = {data.xyzwpr[5]}";
 
                                 foreach (var client in _clients)
                                 {
@@ -122,6 +122,7 @@ namespace frrjiftest
             catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex.Message}");
+                MessageBox.Show($"{ex.Message}");
             }
             finally
             {
@@ -142,6 +143,13 @@ namespace frrjiftest
             public double[] xyzwpr { get; set; }
             public double[] position { get; set; }
             public bool[] intRDO { get; set; }
+            public ReceivedData()
+            {
+                xyzwpr = new double[0];
+                position = new double[0];
+                intRDO = new bool[0];
+            }
+
         }
 
         public class SentData
@@ -150,6 +158,13 @@ namespace frrjiftest
             public double[] xyzwpr { get; set; }
             public double[] position { get; set; }
             public bool[] intRDO { get; set; }
+            public SentData()
+            {
+                xyzwpr = new double[0];
+                position = new double[0];
+                intRDO = new bool[0];
+            }
         }
+
     }
 }
