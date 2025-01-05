@@ -1739,10 +1739,18 @@ namespace frrjiftest
             mobjCurPos.GetValue(ref xyzwpr, ref config, ref joint, ref intUF, ref intUT, ref intValidC, ref intValidJ);
             mobjCore.ReadRDO(1, ref intRDO, 10);
 
+            bool[] boolRDO = new bool[intRDO.Length]; // Create a bool array of the same length
+
+            for (int i = 0; i < intRDO.Length; i++)
+            {
+                boolRDO[i] = (short)intRDO.GetValue(i) == 1; // Map 1 to true and 0 to false
+            }
+
+
             var data = new
             {
                 client = 0,
-                rdo = intRDO,
+                intRDO = boolRDO,
                 xyzwpr = new object[] { xyzwpr.GetValue(0), xyzwpr.GetValue(1), xyzwpr.GetValue(2), xyzwpr.GetValue(3), xyzwpr.GetValue(4), xyzwpr.GetValue(5) },
                 position = new object[] { joint.GetValue(0), joint.GetValue(1), joint.GetValue(2), joint.GetValue(3), joint.GetValue(4), joint.GetValue(5) }
             };
@@ -2062,20 +2070,24 @@ namespace frrjiftest
                     txtLog.AppendText($"\nReceived: {message}\n");
                     // How do I get the data from the message?
                     ReceivedData data = JsonConvert.DeserializeObject<ReceivedData>(message);
-                    if(data == null || data.client == 0)
+                    if(data == null)
                     {
                         txtLog.AppendText("Error deserializing data\n");
                         continue;
                     }
 
-                    if(data.xyzwpr != null)
-                    { 
-                        UpdateTextBoxes(data); 
+                    if(data.xyzwpr.Length > 0)
+                    {
+
+                        UpdateTextBoxes(data);
                     }
 
-                    if(data.intRDO != null)
+                    if (data.client != 0)
                     {
-                        OpenAndCloseClaw(data.intRDO);
+                        if(data.intRDO.Length > 0)
+                        {
+                            OpenAndCloseClaw(data.intRDO);
+                        }
                     }
                 }
                 else if (result.MessageType == WebSocketMessageType.Close)
@@ -2168,8 +2180,6 @@ namespace frrjiftest
                 MessageBox.Show("Error");
             }
             cmdRefresh.PerformClick();
-
-
         }
 
         private void button3_Click(System.Object eventSender, System.EventArgs eventArgs)
@@ -2646,7 +2656,7 @@ namespace frrjiftest
 
         }
 
-        private async void button9_Click_2(object sender, EventArgs e)
+        private async void button9_Click_3(object sender, EventArgs e)
         {
             if (_clientSocket == null || _clientSocket.State != WebSocketState.Open)
             {
@@ -2671,8 +2681,9 @@ namespace frrjiftest
             MessageBox.Show("JSON message sent to the server.");
         }
 
-        private async void button10_Click_1(object sender, EventArgs e)
+        private async void button10_Click_2(object sender, EventArgs e)
         {
+
             if (_clientSocket == null || _clientSocket.State != WebSocketState.Open)
             {
                 MessageBox.Show("Client is not connected to the server.");
@@ -2684,6 +2695,7 @@ namespace frrjiftest
                 client = 1,
                 intRDO = new bool[10]
                 {
+
                     false, true, false, false, false, false, false, false, false, false
                 }
             };

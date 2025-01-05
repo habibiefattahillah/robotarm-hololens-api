@@ -83,11 +83,6 @@ namespace frrjiftest
 
                             if (data != null)
                             {
-                                //Console.WriteLine($"Parsed Data: x = {data.xyzwpr[0]}, y = {data.xyzwpr[1]}, z = {data.xyzwpr[2]}, w = {data.xyzwpr[3]}, p = {data.xyzwpr[4]}, r = {data.xyzwpr[5]}");
-
-                                // Example: Broadcast the parsed data to all clients
-                                //string responseMessage = $"Broadcast: x = x = {data.xyzwpr[0]}, y = {data.xyzwpr[1]}, z = {data.xyzwpr[2]}, w = {data.xyzwpr[3]}, p = {data.xyzwpr[4]}, r = {data.xyzwpr[5]}";
-
                                 foreach (var client in _clients)
                                 {
                                     if (client.State == WebSocketState.Open)
@@ -145,6 +140,7 @@ namespace frrjiftest
             public bool[] intRDO { get; set; }
             public ReceivedData()
             {
+                client = 0;
                 xyzwpr = new double[0];
                 position = new double[0];
                 intRDO = new bool[0];
@@ -160,6 +156,7 @@ namespace frrjiftest
             public bool[] intRDO { get; set; }
             public SentData()
             {
+                client = 0;
                 xyzwpr = new double[0];
                 position = new double[0];
                 intRDO = new bool[0];
