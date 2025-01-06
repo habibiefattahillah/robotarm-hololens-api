@@ -3,10 +3,6 @@
   "WorkspaceRootPath": "C:\\Users\\Foliatti\\Documents\\Stuff\\cycuproject\\csharp2017\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{73BBD08B-D74D-446F-97CA-DE4C5B27CAEF}|frrjiftest.csproj|c:\\users\\foliatti\\documents\\stuff\\cycuproject\\csharp2017\\frm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{73BBD08B-D74D-446F-97CA-DE4C5B27CAEF}|frrjiftest.csproj|solutionrelative:frm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{73BBD08B-D74D-446F-97CA-DE4C5B27CAEF}|frrjiftest.csproj|C:\\Users\\Foliatti\\Documents\\Stuff\\cycuproject\\csharp2017\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{73BBD08B-D74D-446F-97CA-DE4C5B27CAEF}|frrjiftest.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -17,6 +13,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{73BBD08B-D74D-446F-97CA-DE4C5B27CAEF}|frrjiftest.csproj|C:\\Users\\Foliatti\\Documents\\Stuff\\cycuproject\\csharp2017\\frm.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{73BBD08B-D74D-446F-97CA-DE4C5B27CAEF}|frrjiftest.csproj|solutionrelative:frm.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{73BBD08B-D74D-446F-97CA-DE4C5B27CAEF}|frrjiftest.csproj|c:\\users\\foliatti\\documents\\stuff\\cycuproject\\csharp2017\\frm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{73BBD08B-D74D-446F-97CA-DE4C5B27CAEF}|frrjiftest.csproj|solutionrelative:frm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,17 +26,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Foliatti\\Documents\\Stuff\\cycuproject\\csharp2017\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\Foliatti\\Documents\\Stuff\\cycuproject\\csharp2017\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAIEAAAAAAAAAAAAAwFUAAAAgAAAAAAAAAA==",
+              "ViewState": "AgIAAFMAAAAAAAAAAIAwwGkAAABUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-25T06:37:09.228Z",
               "IsPinned": true,
@@ -44,33 +44,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "frm.cs",
               "DocumentMoniker": "C:\\Users\\Foliatti\\Documents\\Stuff\\cycuproject\\csharp2017\\frm.cs",
               "RelativeDocumentMoniker": "frm.cs",
               "ToolTip": "C:\\Users\\Foliatti\\Documents\\Stuff\\cycuproject\\csharp2017\\frm.cs",
               "RelativeToolTip": "frm.cs",
-              "ViewState": "AgIAAFUIAAAAAAAAAAAMwIAIAAA1AAAAAAAAAA==",
+              "ViewState": "AgIAAC0JAAAAAAAAAAD4vx8JAABPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-22T06:36:24.475Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "frm.Designer.cs",
               "DocumentMoniker": "C:\\Users\\Foliatti\\Documents\\Stuff\\cycuproject\\csharp2017\\frm.Designer.cs",
               "RelativeDocumentMoniker": "frm.Designer.cs",
               "ToolTip": "C:\\Users\\Foliatti\\Documents\\Stuff\\cycuproject\\csharp2017\\frm.Designer.cs",
               "RelativeToolTip": "frm.Designer.cs",
-              "ViewState": "AgIAAMUDAAAAAAAAAAAgwKMCAAAPAAAAAAAAAA==",
+              "ViewState": "AgIAAHQEAAAAAAAAAIAwwIEEAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-05T08:28:26.503Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "frm.cs [Design]",
               "DocumentMoniker": "C:\\Users\\Foliatti\\Documents\\Stuff\\cycuproject\\csharp2017\\frm.cs",
               "RelativeDocumentMoniker": "frm.cs",

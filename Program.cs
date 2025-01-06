@@ -138,6 +138,8 @@ namespace frrjiftest
             public double[] xyzwpr { get; set; }
             public double[] position { get; set; }
             public bool[] intRDO { get; set; }
+            public bool? activateRO { get; set; }
+
             public ReceivedData()
             {
                 client = 0;

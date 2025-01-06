@@ -30,7 +30,7 @@ namespace frrjiftest
 
         private const string cnstApp = "frrjiftest";
         private const string cnstSection = "setting";
-        public int positionRegister;
+        public int positionRegister = 99; // Can be changed
 
         private Random rnd = new Random();
 
@@ -92,7 +92,6 @@ namespace frrjiftest
         public frm()
         {
             InitializeComponent();
-            WebSocketServer.OnDataReceived += UpdateTextBoxes;
         }
 
         //protected override void OnFormClosing(FormClosingEventArgs e)
@@ -1782,9 +1781,6 @@ namespace frrjiftest
             cmdSetStrReg.Enabled = blnEnabled;
             button1.Enabled= blnEnabled;
             button2.Enabled = blnEnabled;
-            button3.Enabled = blnEnabled;
-            button4.Enabled = blnEnabled;
-            button5.Enabled = blnEnabled;
             button6.Enabled = blnEnabled;
         }
 
@@ -2053,13 +2049,6 @@ namespace frrjiftest
         {
             System.Windows.Forms.TextBox txtLog = textBox10;
 
-            System.Windows.Forms.TextBox x = textBox8;
-            System.Windows.Forms.TextBox y = textBox4;
-            System.Windows.Forms.TextBox z = textBox5;
-            System.Windows.Forms.TextBox w = textBox6;
-            System.Windows.Forms.TextBox p = textBox7;
-            System.Windows.Forms.TextBox r = textBox9;
-
             byte[] buffer = new byte[1024];
             while (_clientSocket?.State == WebSocketState.Open)
             {
@@ -2076,17 +2065,22 @@ namespace frrjiftest
                         continue;
                     }
 
-                    if(data.xyzwpr.Length > 0)
-                    {
-
-                        UpdateTextBoxes(data);
-                    }
-
                     if (data.client != 0)
                     {
                         if(data.intRDO.Length > 0)
                         {
                             OpenAndCloseClaw(data.intRDO);
+                        }
+
+                        if (data.xyzwpr.Length > 0)
+                        {
+                            UpdateTextBoxes(data.xyzwpr);
+                            button8.PerformClick();
+                        }
+
+                        if (data.activateRO != null)
+                        {
+                            button9.PerformClick();
                         }
                     }
                 }
@@ -2110,32 +2104,31 @@ namespace frrjiftest
             }
         }
 
-        public void UpdateTextBoxes(ReceivedData data)
+        public void UpdateTextBoxes(double[] xyzwpr)
         {
             if (textBox8.InvokeRequired || textBox4.InvokeRequired || textBox5.InvokeRequired
                 || textBox6.InvokeRequired || textBox7.InvokeRequired || textBox9.InvokeRequired)
             {
                 textBox8.Invoke(new Action(() =>
                 {
-                    textBox8.Text = data.xyzwpr[0].ToString();
-                    textBox4.Text = data.xyzwpr[1].ToString();
-                    textBox5.Text = data.xyzwpr[2].ToString();
-                    textBox6.Text = data.xyzwpr[3].ToString();
-                    textBox7.Text = data.xyzwpr[4].ToString();
-                    textBox9.Text = data.xyzwpr[5].ToString();
+                    textBox8.Text = xyzwpr[0].ToString();
+                    textBox4.Text = xyzwpr[1].ToString();
+                    textBox5.Text = xyzwpr[2].ToString();
+                    textBox6.Text = xyzwpr[3].ToString();
+                    textBox7.Text = xyzwpr[4].ToString();
+                    textBox9.Text = xyzwpr[5].ToString();
                 }));
             }
             else
             {
-                textBox8.Text = data.xyzwpr[0].ToString();
-                textBox4.Text = data.xyzwpr[1].ToString();
-                textBox5.Text = data.xyzwpr[2].ToString();
-                textBox6.Text = data.xyzwpr[3].ToString();
-                textBox7.Text = data.xyzwpr[4].ToString();
-                textBox9.Text = data.xyzwpr[5].ToString();
+                textBox8.Text = xyzwpr[0].ToString();
+                textBox4.Text = xyzwpr[1].ToString();
+                textBox5.Text = xyzwpr[2].ToString();
+                textBox6.Text = xyzwpr[3].ToString();
+                textBox7.Text = xyzwpr[4].ToString();
+                textBox9.Text = xyzwpr[5].ToString();
             }
         }
-
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -2271,7 +2264,7 @@ namespace frrjiftest
                     intVal.SetValue((short)1, ii);
                 }
             }
-            blnRes = mobjCore.WriteSDI(1, intVal, 10);
+            blnRes = mobjCore.WriteSDI(81, intVal, 10);
             if (blnRes == false)
             {
                 MessageBox.Show("Error");
@@ -2340,7 +2333,7 @@ namespace frrjiftest
 
                 if (result)
                 {
-                    MessageBox.Show("Position data successfully sent to PR");
+                    //MessageBox.Show("Position data successfully sent to PR");
                 }
                 else
                 {
@@ -2706,6 +2699,34 @@ namespace frrjiftest
             await _clientSocket.SendAsync(new ArraySegment<byte>(buffer), WebSocketMessageType.Text, true, CancellationToken.None);
 
             MessageBox.Show("JSON message sent to the server.");
+        }
+
+        private void button9_Click_1(object sender, EventArgs e)
+        {
+            Array intVal = new short[10];
+            int ii = 0;
+            bool blnRes = false;
+
+            static_cmdSetRDO_Click_lngCount = static_cmdSetRDO_Click_lngCount + 1;
+            if (static_cmdSetRDO_Click_lngCount % 2 == 1)
+            {
+                for (ii = 7; ii <= 7; ii++)
+                {
+                    intVal.SetValue((short)1, ii);
+                }
+            }
+            blnRes = mobjCore.WriteRDO(1, intVal, 8);
+            if (blnRes == false)
+            {
+                MessageBox.Show("Error");
+            }
+            cmdRefresh.PerformClick();
+
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 
